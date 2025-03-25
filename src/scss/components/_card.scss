@@ -1,0 +1,129 @@
+@use '../utils' as u;
+
+.card {
+
+    height: inherit;
+    @include u.flexbox($direction: column, $justify: space-between);
+    overflow-y: hidden;
+    // display: flex;
+
+    &--success.card__content {
+        // display: none;
+        margin-block-start: 0;
+        padding-block-start: u.rem(135);
+        height: 100%;
+        row-gap: u.rem(32);
+    }
+
+    &__icon {
+        width: u.rem(64);
+    }
+
+    &__image {}
+
+    &__content {
+        flex: 1;
+        margin-block-start: u.rem(40);
+        padding: 0 u.rem(24) u.rem(45);
+        color: var(--blue-800);
+
+        @include u.flexbox($direction: column);
+        row-gap: u.rem(24);
+    }
+
+    &__title {
+        font-size: var(--font-size-h1);
+    }
+
+    &__description {}
+
+    &__list {
+        @include u.flexbox($direction: column);
+        row-gap: u.rem(8);
+
+        ::before {
+            content: url('/assets/images/icon-list.svg');
+            width: 20px;
+            height: 20px;
+            margin-inline-end: u.rem(16);
+        }
+
+        &-item {
+            @include u.flexbox();
+        }
+    }
+
+    &__footer {}
+
+    &__form {
+        margin-block-start: u.rem(16);
+        @include u.flexbox($direction: column);
+        row-gap: u.rem(8);
+    }
+
+    &__label {
+        font-size: var(--font-size-label);
+        font-weight: var(--font-bold);
+
+        &-content {
+            @include u.flexbox($justify: space-between);
+        }
+    }
+
+    &__input {
+        padding: u.rem(16) u.rem(24);
+        font: inherit;
+        border: 1px solid var(--color-neutral-grey);
+        border-radius: u.rem(8);
+        margin-block-end: u.rem(16);
+        outline: none;
+
+        &:hover,
+        &:focus-visible {
+            border: 1px solid var(--blue-800);
+            cursor: pointer;
+        }
+    }
+
+    &__button {
+        padding: u.rem(16) u.rem(24);
+        background: var(--blue-800);
+        font: inherit;
+        font-weight: var(--font-bold);
+        color: var(--color-neutral-white);
+        border: none;
+        border-radius: u.rem(8);
+
+        &:hover,
+        &:focus-visible {
+            transition: background 0.5s ease-in;
+            background: var(--color-linear-grad);
+            cursor: pointer;
+            box-shadow: var(--color-btn-shadow);
+        }
+
+        &--success.card__button {
+            margin-top: auto;
+        }
+    }
+}
+
+.bold {
+    font-weight: var(--font-bold);
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: var(--color-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-bold);
+}
+
+.error-input {
+    color: var(--color-primary);
+    background-color: var(--color-error-bg);
+    border: u.rem(2) solid var(--color-primary);
+}

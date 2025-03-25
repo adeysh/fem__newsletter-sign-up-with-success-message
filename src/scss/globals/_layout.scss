@@ -1,0 +1,11 @@
+@use '../utils' as u;
+
+.wrapper {
+    width: min(u.rem(1110), calc(100%));
+    margin-inline: auto;
+    height: 100vh;
+}
+
+.open {
+    display: flex;
+}

@@ -1,0 +1,15 @@
+@use '../utils' as u;
+
+:root {
+    // font-size
+    --font-size-h1: clamp(#{u.rem(40)}, 1.5458rem + 4.0712vi, #{u.rem(56)});
+    --font-size-body: #{u.rem(16)};
+    --font-size-label: #{u.rem(12)};
+
+    // font-family
+    --font-family-primary: "Roboto", sans-serif;
+
+    // font-weight
+    --font-regular: 400;
+    --font-bold: 700;
+}
