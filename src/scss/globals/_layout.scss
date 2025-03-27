@@ -1,9 +1,21 @@
 @use '../utils' as u;
 
 .wrapper {
-    width: min(u.rem(1110), calc(100%));
+    // width: min(u.rem(1110), calc(100%));
     margin-inline: auto;
-    height: 100vh;
+    // height: 100vh;
+    background-color: var(--blue-700);
+
+    @include u.breakpoint($from: "tablet", $to: "desktop") {
+        @include u.flexbox($align: center, $justify: center);
+        min-block-size: 100vh;
+        padding-block: u.rem(50);
+    }
+
+    @include u.breakpoint($from: "desktop", $to: "desktop-xlarge") {
+        @include u.flexbox($direction: row, $align: center, $justify: center);
+        min-block-size: 100vh;
+    }
 }
 
 .open {

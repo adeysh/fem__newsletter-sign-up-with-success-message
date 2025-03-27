@@ -4,11 +4,13 @@
 
     height: inherit;
     @include u.flexbox($direction: column, $justify: space-between);
-    overflow-y: hidden;
-    // display: flex;
+    overflow-y: visible;
+    background-color: var(--color-neutral-white);
+    max-height: fit-content;
+
+
 
     &--success.card__content {
-        // display: none;
         margin-block-start: 0;
         padding-block-start: u.rem(135);
         height: 100%;
@@ -87,7 +89,7 @@
 
     &__button {
         padding: u.rem(16) u.rem(24);
-        background: var(--blue-800);
+        background-color: var(--blue-800);
         font: inherit;
         font-weight: var(--font-bold);
         color: var(--color-neutral-white);
@@ -96,14 +98,45 @@
 
         &:hover,
         &:focus-visible {
-            transition: background 0.5s ease-in;
-            background: var(--color-linear-grad);
+            transition: background-color 1.5s ease-in;
+            background-color: var(--color-linear-grad);
             cursor: pointer;
             box-shadow: var(--color-btn-shadow);
         }
 
         &--success.card__button {
             margin-top: auto;
+        }
+    }
+
+    @include u.breakpoint($from: "tablet", $to: "desktop") {
+        overflow-y: visible;
+
+        &__image {
+            width: 500px;
+            margin: u.rem(42.8) u.rem(40) 0;
+            border-radius: u.rem(16);
+        }
+
+        @include u.flexbox($direction: column, $align: center);
+        max-inline-size: u.rem(700);
+        border-radius: u.rem(36);
+
+        &__content {
+            padding: 0;
+            min-inline-size: u.rem(500);
+            margin-block: u.rem(40);
+        }
+    }
+
+    @include u.breakpoint($from: "desktop", $to: "desktop-xlarge") {
+        @include u.flexbox($direction: row-reverse, $align: center);
+        border-radius: u.rem(36);
+        padding: u.rem(25);
+        column-gap: u.rem(25);
+
+        &__image {
+            width: 400px;
         }
     }
 }

@@ -1,0 +1,59 @@
+@use "sass:map";
+
+// Define breakpoints
+$breakpoints: (
+    "mobile": 480px,
+    "tablet": 720px,
+    "desktopS": 960px,
+    "desktop": 1240px,
+    "desktop-large": 1920px,
+    "desktop-xlarge": 2560px,
+);
+
+// Modern breakpoint mixin with width > and width < syntax
+@mixin breakpoint($from: false, $to: false, $extra: ()) {
+    $conditions: "screen";
+
+    @if $from {
+        @if map.has-key($breakpoints, $from) {
+            $conditions: "#{$conditions} and (width >= #{map.get($breakpoints, $from)})";
+        }
+
+        @else {
+            @error "Invalid 'from' breakpoint: #{$from}";
+        }
+    }
+
+    @if $to {
+        @if map.has-key($breakpoints, $to) {
+            $conditions: "#{$conditions} and (width <= #{map.get($breakpoints, $to)})";
+        }
+
+        @else {
+            @error "Invalid 'to' breakpoint: #{$to}";
+        }
+    }
+
+    @each $key, $value in $extra {
+        $conditions: "#{$conditions} and (#{$key}: #{$value})";
+    }
+
+    @media #{$conditions} {
+        @content;
+    }
+}
+
+// Usage examples
+.element {
+    @include breakpoint($from: "mobile", $to: "desktop") {
+        background: red;
+    }
+
+    @include breakpoint($to: "desktop") {
+        color: blue;
+    }
+
+    @include breakpoint($from: "tablet", $extra: (orientation: landscape)) {
+        font-size: 20px;
+    }
+}
