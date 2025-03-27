@@ -6,15 +6,33 @@
     @include u.flexbox($direction: column, $justify: space-between);
     overflow-y: visible;
     background-color: var(--color-neutral-white);
+    box-shadow: var(--card-box-shadow);
     max-height: fit-content;
 
 
 
     &--success.card__content {
+        max-block-size: -webkit-fill-available;
         margin-block-start: 0;
         padding-block-start: u.rem(135);
-        height: 100%;
+        height: 100vh;
         row-gap: u.rem(32);
+        background-color: var(--color-neutral-white);
+
+        @include u.breakpoint($from: "tablet", $to: "desktop") {
+            max-inline-size: u.rem(150);
+            padding: u.rem(60);
+            border-radius: u.rem(30);
+            box-shadow: var(--card-box-shadow);
+            max-block-size: fit-content;
+        }
+
+        @include u.breakpoint($from: "desktop", $to: "desktop-xlarge") {
+            max-inline-size: u.rem(500);
+            max-block-size: fit-content;
+            border-radius: u.rem(30);
+            padding: u.rem(60);
+        }
     }
 
     &__icon {
@@ -95,13 +113,29 @@
         color: var(--color-neutral-white);
         border: none;
         border-radius: u.rem(8);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        background-blend-mode: normal;
+        transition: box-shadow 350ms ease-in-out;
 
-        &:hover,
-        &:focus-visible {
-            transition: background-color 1.5s ease-in;
-            background-color: var(--color-linear-grad);
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            inset: 0;
+            background-image: var(--color-linear-grad);
+            transition: opacity 350ms ease-in-out;
+        }
+
+        &:hover {
             cursor: pointer;
             box-shadow: var(--color-btn-shadow);
+        }
+
+        &:hover::before {
+            opacity: 1;
         }
 
         &--success.card__button {
@@ -112,15 +146,16 @@
     @include u.breakpoint($from: "tablet", $to: "desktop") {
         overflow-y: visible;
 
+
+        @include u.flexbox($direction: column, $align: center);
+        max-inline-size: u.rem(700);
+        border-radius: u.rem(36);
+
         &__image {
             width: 500px;
             margin: u.rem(42.8) u.rem(40) 0;
             border-radius: u.rem(16);
         }
-
-        @include u.flexbox($direction: column, $align: center);
-        max-inline-size: u.rem(700);
-        border-radius: u.rem(36);
 
         &__content {
             padding: 0;
