@@ -1,13 +1,14 @@
 @use "sass:map";
+@use "./functions" as *;
 
 // Define breakpoints
 $breakpoints: (
-    "mobile": 480px,
-    "tablet": 720px,
-    "desktopS": 960px,
-    "desktop": 1240px,
-    "desktop-large": 1920px,
-    "desktop-xlarge": 2560px,
+    "mobile": em(480),
+    "tablet": em(720),
+    "desktopS": em(960),
+    "desktop": em(1240),
+    "desktop-large": em(1920),
+    "desktop-xlarge": em(2560),
 );
 
 // Modern breakpoint mixin with width > and width < syntax

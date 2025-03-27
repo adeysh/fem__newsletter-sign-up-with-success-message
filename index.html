@@ -14,13 +14,20 @@
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
         .attribution {
-            font-size: 11px;
+            font-size: 12px;
             text-align: center;
-            display: none;
+            position: absolute;
+            background-color: var(--blue-700);
+            color: var(--color-neutral-white);
+            bottom: 10px;
+            left: 0;
+            right: 0;
         }
 
         .attribution a {
-            color: hsl(228, 45%, 44%);
+            background-image: var(--color-linear-grad);
+            color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
@@ -54,22 +61,20 @@
                     </li>
                 </ul>
 
-                <div class="card__footer">
-                    <form action="#" id="form" novalidate class="card__form">
-                        <div class="card__label-content">
-                            <label for="email" class="card__label">
-                                Email address
-                            </label>
-                            <span id="error" class="error"></span>
-                        </div>
-                        <input type="email" name="email" id="email" class="card__input" placeholder="email@company.com"
-                            required>
+                <form action="#" id="form" novalidate class="card__form">
+                    <div class="card__label-content">
+                        <label for="email" class="card__label">
+                            Email address
+                        </label>
+                        <span id="error" class="error"></span>
+                    </div>
+                    <input type="email" name="email" id="email" class="card__input" placeholder="email@company.com"
+                        required>
 
-                        <button type="submit" class="card__button">
-                            Subscribe to monthly newsletter
-                        </button>
-                    </form>
-                </div>
+                    <button type="submit" class="card__button">
+                        Subscribe to monthly newsletter
+                    </button>
+                </form>
             </div>
             <!-- Sign-up form end -->
         </div>
@@ -87,7 +92,6 @@
             <button type="submit" id="dismiss" class="card__button card__button--success">
                 Dismiss message
             </button>
-
             <!-- Success message end -->
         </div>
     </main>
@@ -95,7 +99,7 @@
     <footer class="attribution">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend
             Mentor</a>.
-        Coded by <a href="#">Your Name Here</a>.
+        Coded by <a href="https://www.frontendmentor.io/profile/adeysh">Adesh Katiya</a>.
     </footer>
 </body>
 

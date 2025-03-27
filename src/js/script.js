@@ -4,7 +4,7 @@ const buttonDismiss = document.getElementById("dismiss");
 const emailEl = document.getElementById("email");
 const emailSuccessEl = document.getElementById("bold");
 const errorEl = document.getElementById("error");
-
+const footerEl = document.querySelector(".attribution");
 const form = document.getElementById("form");
 
 

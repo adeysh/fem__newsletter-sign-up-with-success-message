@@ -39,8 +39,6 @@
         width: u.rem(64);
     }
 
-    &__image {}
-
     &__content {
         flex: 1;
         margin-block-start: u.rem(40);
@@ -55,7 +53,6 @@
         font-size: var(--font-size-h1);
     }
 
-    &__description {}
 
     &__list {
         @include u.flexbox($direction: column);
@@ -72,8 +69,6 @@
             @include u.flexbox();
         }
     }
-
-    &__footer {}
 
     &__form {
         margin-block-start: u.rem(16);
@@ -93,14 +88,14 @@
     &__input {
         padding: u.rem(16) u.rem(24);
         font: inherit;
-        border: 1px solid var(--color-neutral-grey);
+        border: u.rem(1) solid var(--color-neutral-grey);
         border-radius: u.rem(8);
         margin-block-end: u.rem(16);
         outline: none;
 
         &:hover,
         &:focus-visible {
-            border: 1px solid var(--blue-800);
+            border: u.rem(1) solid var(--blue-800);
             cursor: pointer;
         }
     }
@@ -193,5 +188,12 @@
 .error-input {
     color: var(--color-primary);
     background-color: var(--color-error-bg);
-    border: u.rem(2) solid var(--color-primary);
+    border: u.rem(1) solid var(--color-primary);
+}
+
+.attribution {
+    @include u.breakpoint($to: "tablet") {
+        background-color: var(--color-neutral-white);
+        color: var(--blue-800);
+    }
 }
