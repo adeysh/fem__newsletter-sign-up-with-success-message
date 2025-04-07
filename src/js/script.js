@@ -6,6 +6,7 @@ const emailSuccessEl = document.getElementById("bold");
 const errorEl = document.getElementById("error");
 const footerEl = document.querySelector(".attribution");
 const form = document.getElementById("form");
+const formSuccessEl = document.querySelector(".card__form-message");
 
 
 function isEmail(email) {
@@ -17,25 +18,52 @@ const toggleHiddenClass = () => {
     cardSuccess.classList.toggle("hidden");
 }
 
-const handleSubmit = (e) => {
-    e.preventDefault(e);
+const renderFormMessage = (message) => {
+    formSuccessEl.textContent = message;
+}
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+const renderError = (message) => {
+    errorEl.textContent = message;
+}
 
-    if (data['email'] === "") {
-        errorEl.textContent = "Email Should be provided.";
-    } else if (isEmail(data['email'])) {
-        emailEl.classList.remove("error-input");
+function toggleErrorClass(isError) {
+    emailEl.classList.toggle("error-input", isError);
+}
+
+const dataIsValid = (data) => {
+    const email = data["email"];
+    let isError = false;
+
+    if (email === "") {
+        renderError("Email Should be provided.");
+        isError = true;
+        toggleErrorClass(isError);
+        return false
+    } else if (isEmail(email)) {
+        toggleErrorClass(isError);
         toggleHiddenClass();
-        emailSuccessEl.textContent = data['email'];
+        formSuccessEl.classList.toggle("hidden");
+        renderError("");
+        emailSuccessEl.textContent = email;
+        return true
     } else {
-        errorEl.textContent = "Valid email required";
-        console.log(emailEl);
-        emailEl.classList.add("error-input");
+        renderError("Valid email required!");
+        isError = true;
+        toggleErrorClass(isError);
+        return false
+    }
+}
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const isValid = dataIsValid(data);
+    if (!isValid) {
+        formSuccessEl.classList.toggle("hidden");
+        formSuccessEl.classList.toggle("error-input");
+        renderFormMessage("Form data is invalid!");
     }
 };
 
 buttonDismiss.addEventListener("click", toggleHiddenClass);
-
 form.addEventListener("submit", handleSubmit);

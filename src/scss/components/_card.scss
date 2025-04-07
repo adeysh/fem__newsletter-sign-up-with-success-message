@@ -100,6 +100,12 @@
         }
     }
 
+    &__form-message {
+        padding-block: 0.5rem;
+        padding-inline-start: 2rem;
+        border-radius: 0.5rem;
+    }
+
     &__button {
         padding: u.rem(16) u.rem(24);
         background-color: var(--blue-800);
